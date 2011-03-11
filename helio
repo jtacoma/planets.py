@@ -1,11 +1,48 @@
 #!/usr/bin/env python
+
+import cgi
+import datetime
+import json
+import math
 import os
 import sys
+
 import cgitb
 cgitb.enable()
 
-import swisseph
+import swisseph as swe
 
-print 'Content-type: text/html'
-print
-print 'Helio, Sun!'
+def getinfo(jd):
+
+    flag = swe.FLG_HELCTR | swe.FLG_SWIEPH | swe.FLG_SPEED
+    
+    keys = ['lon', 'lat', 'dist', 'lons', 'lats', 'dists']
+    bodies = []
+    for body in range(23):
+        values = swe.calc_ut(jd, body, flag)
+        info = dict(zip(keys, values))
+        info['body_id'] = body
+        bodies.append(info)
+
+    swe.close()
+    
+    return {
+            'jd' : jd,
+            'bodies'  : bodies,
+        }
+
+def main():
+    form = cgi.FieldStorage()
+    date_raw = form.getfirst('d', datetime.datetime.now().isoformat().split('T')[0])
+    date = datetime.datetime.strptime(date_raw, '%Y-%m-%d')
+    jd = swe.julday(date.year, date.month, date.day, date.hour)
+    span = int(form.getfirst('s', 1))
+    result = []
+    for i in range(span):
+        result.append(getinfo(jd + i))
+    print 'Content-type: application/json'
+    print
+    print json.dumps(result)
+
+if __name__ == '__main__':
+    main()
