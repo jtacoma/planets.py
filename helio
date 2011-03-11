@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+import os
+import sys
+import cgitb
+cgitb.enable()
+
+import swisseph
+
+print 'Content-type: text/html'
+print
+print 'Helio, Sun!'
