@@ -53,16 +53,22 @@ def getinfo(jd):
 
 def main():
     form = cgi.FieldStorage()
+    # date:
     date_raw = form.getfirst('d', datetime.datetime.now().isoformat().split('T')[0])
     date = datetime.datetime.strptime(date_raw, '%Y-%m-%d')
     jd = swe.julday(date.year, date.month, date.day, date.hour)
+    # span:
     span = int(form.getfirst('s', 1))
-    result = []
-    for i in range(span):
-        result.append(getinfo(jd + i))
-    print 'Content-type: application/json'
+    # callback:
+    callback = form.getfirst('callback')
+    # work:
+    data = json.dumps([getinfo(jd + i) for i in range(span)])
+    js = callback and '%s(%s);' % (callback, data) or data
+    content_type = callback and 'application/javascript' or 'application/json'
+    # output:
+    print 'Content-type: ' + content_type
     print
-    print json.dumps(result)
+    print js
 
 if __name__ == '__main__':
     main()
