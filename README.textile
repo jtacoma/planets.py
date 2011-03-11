@@ -1,0 +1,18 @@
+h1. planets.py
+
+*planets.py* is a python web application designed to publish ephemeris data.  At present, it produces only heliocentric ephemerides.
+
+For some examples of what can be done, see the "demo":http://yellowseed.org/planets.py/.
+
+h2. Requirements
+
+To run planets.py on your own server, you will have to install the following:
+
+* "Python":http://python.org v2.6 or higher, but less than v3.0
+* "pyswisseph":http://pyswisseph.chaosorigin.com/
+
+h2. Developing
+
+Collaborators and co-conspirators welcome.  Feel free to fork the github project and send pull requests.
+
+Copyright (c) 2011 Joshua Tacoma. This software is licensed under the MIT License.
