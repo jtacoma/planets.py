@@ -15,7 +15,6 @@ var planets = (function() {
 
   return {
     'helio': helio,
-    'url': 'http://ephemeris.yellowseed.org/0.1/',
   };
 
 }());

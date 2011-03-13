@@ -5,33 +5,46 @@ title: planets.py
 
 h1. planets.py
 
-This page is a demonstration of how to use a <a href="https://github.com/jtacoma/planets.py">planets.py</a> service from a web page.
-
-For example, here is some information about where some planets are today:
+This page is a demonstration of how to use the <a href="https://github.com/jtacoma/planets.py">planets.py</a> service from a web page.  For example, here is where some planets are right now, according to a heliocentric, or Sun-centred, ephemeris:
 
 bq. <div id="now" />
-
 <script src="/planets.py/planets.js"></script>
 <script type="text/javascript">
+  planets.url = "http://ephemeris.yellowseed.org/0.1/";
   planets.helio(null, function(data) {
     document.getElementById('now').innerHTML =
       '(JD:' + data[0].jd + ')<br/>' +
-      'Mercury: ' + data[0].bodies[2].lon + '<br/>' +
-      'Venus: ' + data[0].bodies[3].lon + '<br/>' +
-      'Earth: ' + data[0].bodies[14].lon;
+      '&#9791; ' + data[0].bodies[2].lon + '&deg;<br/>' +
+      '&#9792; ' + data[0].bodies[3].lon + '&deg;<br/>' +
+      '&#8853; ' + data[0].bodies[14].lon + '&deg;<br/>' +
+      '&#9794; ' + data[0].bodies[4].lon + '&deg;<br/>' +
+      '&#9795; ' + data[0].bodies[5].lon + '&deg;<br/>' +
+      '&#9796; ' + data[0].bodies[6].lon + '&deg;<br/>' +
+      '&#9797; ' + data[0].bodies[7].lon + '&deg;<br/>' +
+      '&#9798; ' + data[0].bodies[8].lon + '&deg;<br/>' +
+      '&#9799; ' + data[0].bodies[9].lon + '&deg;';
   });
 </script>
 
-Your browser loaded this information from "ephemeris.yellowseed.org":http://ephemeris.yellowseed.org/0.1/helio but you could run your own planets.py service anywhere else, if you wanted to.  To put this in another HTML page, just copy and paste this code:
+Your browser loaded this information from ephemeris.yellowseed.org and reloading the page will update the positions.  Some of the planetary symbols may not show up correctly on systems with old font libraries.  To put this in another HTML page, just copy and paste this code:
 
 bc. <div id="now" />
 <script src="http://yellowseed.org/planets.py/planets.js"></script>
 <script type="text/javascript">
+  planets.url = "http://ephemeris.yellowseed.org/0.1/";
   planets.helio(null, function(data) {
     document.getElementById('now').innerHTML =
       '(JD:' + data[0].jd + ')<br/>' +
-      'Mercury: ' + data[0].bodies[2].lon + '<br/>' +
-      'Venus: ' + data[0].bodies[3].lon + '<br/>' +
-      'Earth: ' + data[0].bodies[14].lon;
+      '&#9791; ' + data[0].bodies[2].lon + '&deg;<br/>' +
+      '&#9792; ' + data[0].bodies[3].lon + '&deg;<br/>' +
+      '&#8853; ' + data[0].bodies[14].lon + '&deg;<br/>' +
+      '&#9794; ' + data[0].bodies[4].lon + '&deg;<br/>' +
+      '&#9795; ' + data[0].bodies[5].lon + '&deg;<br/>' +
+      '&#9796; ' + data[0].bodies[6].lon + '&deg;<br/>' +
+      '&#9797; ' + data[0].bodies[7].lon + '&deg;<br/>' +
+      '&#9798; ' + data[0].bodies[8].lon + '&deg;<br/>' +
+      '&#9799; ' + data[0].bodies[9].lon + '&deg;';
   });
 </script>
+
+These positions are calculated using the "Swiss Ephemeris":http://www.astro.com/swisseph/ via the "pyswisseph":http://pyswisseph.chaosorigin.com/ project.
