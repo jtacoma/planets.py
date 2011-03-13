@@ -37,11 +37,13 @@ def getinfo(jd, span):
     flags = swe.FLG_HELCTR | swe.FLG_SWIEPH | swe.FLG_SPEED
 
     info = []
+    interests = [ swe.MERCURY, swe.VENUS, swe.EARTH, swe.MARS, swe.JUPITER,
+            swe.SATURN, swe.URANUS, swe.NEPTUNE, swe.PLUTO ]
     for off in range(span):
         keys = ['lon', 'lat', 'dist', 'lons', 'lats', 'dists']
         bodies = {}
         jd_off = jd + off
-        for sweph_id in range(23):
+        for sweph_id in interests:
             values = swe.calc_ut(jd_off, sweph_id, flags)
             body = dict(zip(keys, values))
             body['sweph_id'] = sweph_id
