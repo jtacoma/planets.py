@@ -11,29 +11,27 @@ For example, here is some information about where some planets are today:
 
 bq. <div id="now" />
 
-<script src="http://code.jquery.com/jquery-1.4.2.js"></script>
+<script src="/planets.py/planets.js"></script>
 <script type="text/javascript">
-  jQuery.getJSON("http://ephemeris.yellowseed.org/0.1/helio?callback=?", function(data) {
-    jQuery('#now').html(
+  planets.helio(null, function(data) {
+    document.getElementById('now').innerHTML =
       '(JD:' + data[0].jd + ')<br/>' +
       'Mercury: ' + data[0].bodies[2].lon + '<br/>' +
       'Venus: ' + data[0].bodies[3].lon + '<br/>' +
-      'Earth: ' + data[0].bodies[14].lon
-    );
+      'Earth: ' + data[0].bodies[14].lon;
   });
 </script>
 
 Your browser loaded this information from "ephemeris.yellowseed.org":http://ephemeris.yellowseed.org/0.1/helio but you could run your own planets.py service anywhere else, if you wanted to.  To put this in another HTML page, just copy and paste this code:
 
 bc. <div id="now" />
-<script src="http://code.jquery.com/jquery-1.4.2.js"></script>
+<script src="http://yellowseed.org/planets.py/planets.js"></script>
 <script type="text/javascript">
-  jQuery.getJSON("http://ephemeris.yellowseed.org/0.1/helio?callback=?", function(data) {
-    jQuery('#now').html(
+  planets.helio(null, function(data) {
+    document.getElementById('now').innerHTML =
       '(JD:' + data[0].jd + ')<br/>' +
       'Mercury: ' + data[0].bodies[2].lon + '<br/>' +
       'Venus: ' + data[0].bodies[3].lon + '<br/>' +
-      'Earth: ' + data[0].bodies[14].lon
-    );
+      'Earth: ' + data[0].bodies[14].lon;
   });
 </script>
