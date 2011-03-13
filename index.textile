@@ -11,18 +11,18 @@ bq. <div id="now" />
 <script src="/planets.py/planets.js"></script>
 <script type="text/javascript">
   planets.url = "http://ephemeris.yellowseed.org/0.1/";
-  planets.helio(null, function(data) {
+  planets.helio(null, function(days) {
     document.getElementById('now').innerHTML =
-      '(JD:' + data[0].jd + ')<br/>' +
-      '&#9791; ' + data[0].bodies[2].lon + '&deg;<br/>' +
-      '&#9792; ' + data[0].bodies[3].lon + '&deg;<br/>' +
-      '&#8853; ' + data[0].bodies[14].lon + '&deg;<br/>' +
-      '&#9794; ' + data[0].bodies[4].lon + '&deg;<br/>' +
-      '&#9795; ' + data[0].bodies[5].lon + '&deg;<br/>' +
-      '&#9796; ' + data[0].bodies[6].lon + '&deg;<br/>' +
-      '&#9797; ' + data[0].bodies[7].lon + '&deg;<br/>' +
-      '&#9798; ' + data[0].bodies[8].lon + '&deg;<br/>' +
-      '&#9799; ' + data[0].bodies[9].lon + '&deg;';
+      '(JD:' + days[0].jd + ')<br/>' +
+      '&#9791; ' + days[0].bodies[2].lon + '&deg;<br/>' +
+      '&#9792; ' + days[0].bodies[3].lon + '&deg;<br/>' +
+      '&#8853; ' + days[0].bodies[14].lon + '&deg;<br/>' +
+      '&#9794; ' + days[0].bodies[4].lon + '&deg;<br/>' +
+      '&#9795; ' + days[0].bodies[5].lon + '&deg;<br/>' +
+      '&#9796; ' + days[0].bodies[6].lon + '&deg;<br/>' +
+      '&#9797; ' + days[0].bodies[7].lon + '&deg;<br/>' +
+      '&#9798; ' + days[0].bodies[8].lon + '&deg;<br/>' +
+      '&#9799; ' + days[0].bodies[9].lon + '&deg;';
   });
 </script>
 
@@ -32,18 +32,18 @@ bc. <div id="now" />
 <script src="http://yellowseed.org/planets.py/planets.js"></script>
 <script type="text/javascript">
   planets.url = "http://ephemeris.yellowseed.org/0.1/";
-  planets.helio(null, function(data) {
+  planets.helio(null, function(days) {
     document.getElementById('now').innerHTML =
-      '(JD:' + data[0].jd + ')<br/>' +
-      '&#9791; ' + data[0].bodies[2].lon + '&deg;<br/>' +
-      '&#9792; ' + data[0].bodies[3].lon + '&deg;<br/>' +
-      '&#8853; ' + data[0].bodies[14].lon + '&deg;<br/>' +
-      '&#9794; ' + data[0].bodies[4].lon + '&deg;<br/>' +
-      '&#9795; ' + data[0].bodies[5].lon + '&deg;<br/>' +
-      '&#9796; ' + data[0].bodies[6].lon + '&deg;<br/>' +
-      '&#9797; ' + data[0].bodies[7].lon + '&deg;<br/>' +
-      '&#9798; ' + data[0].bodies[8].lon + '&deg;<br/>' +
-      '&#9799; ' + data[0].bodies[9].lon + '&deg;';
+      '(JD:' + days[0].jd + ')<br/>' +
+      '&#9791; ' + days[0].bodies[2].lon + '&deg;<br/>' +
+      '&#9792; ' + days[0].bodies[3].lon + '&deg;<br/>' +
+      '&#8853; ' + days[0].bodies[14].lon + '&deg;<br/>' +
+      '&#9794; ' + days[0].bodies[4].lon + '&deg;<br/>' +
+      '&#9795; ' + days[0].bodies[5].lon + '&deg;<br/>' +
+      '&#9796; ' + days[0].bodies[6].lon + '&deg;<br/>' +
+      '&#9797; ' + days[0].bodies[7].lon + '&deg;<br/>' +
+      '&#9798; ' + days[0].bodies[8].lon + '&deg;<br/>' +
+      '&#9799; ' + days[0].bodies[9].lon + '&deg;';
   });
 </script>
 
