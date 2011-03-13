@@ -58,9 +58,15 @@ def getinfo(jd, span):
 def main():
     form = cgi.FieldStorage()
     # date:
-    date_raw = form.getfirst('d', datetime.datetime.now().isoformat().split('T')[0])
-    date = datetime.datetime.strptime(date_raw, '%Y-%m-%d')
-    jd = swe.julday(date.year, date.month, date.day, date.hour)
+    date_raw = form.getfirst('d', datetime.datetime.now().isoformat().split('.')[0])
+    if 'T' in date_raw:
+        date = datetime.datetime.strptime(date_raw, '%Y-%m-%dT%H:%M:%S')
+    elif '-' in date_raw:
+        date = datetime.datetime.strptime(date_raw, '%Y-%m-%d')
+    else:
+        jd = date = float(date_raw)
+    if isinstance(date, datetime.datetime):
+        jd = swe.julday(date.year, date.month, date.day, date.hour + date.minute*1./60 + date.second*1./3600)
     # span:
     span = int(form.getfirst('s', 1))
     # callback:
