@@ -35,17 +35,17 @@ import swisseph as swe
 def getinfo(jd):
 
     flag = swe.FLG_HELCTR | swe.FLG_SWIEPH | swe.FLG_SPEED
-    
+
     keys = ['lon', 'lat', 'dist', 'lons', 'lats', 'dists']
     bodies = []
     for body in range(23):
         values = swe.calc_ut(jd, body, flag)
         info = dict(zip(keys, values))
-        info['body_id'] = body
+        info['sweph_id'] = body
         bodies.append(info)
 
     swe.close()
-    
+
     return {
             'jd' : jd,
             'bodies'  : bodies,
