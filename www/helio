@@ -32,24 +32,28 @@ cgitb.enable()
 
 import swisseph as swe
 
-def getinfo(jd):
+def getinfo(jd, span):
 
-    flag = swe.FLG_HELCTR | swe.FLG_SWIEPH | swe.FLG_SPEED
+    flags = swe.FLG_HELCTR | swe.FLG_SWIEPH | swe.FLG_SPEED
 
-    keys = ['lon', 'lat', 'dist', 'lons', 'lats', 'dists']
-    bodies = []
-    for body in range(23):
-        values = swe.calc_ut(jd, body, flag)
-        info = dict(zip(keys, values))
-        info['sweph_id'] = body
-        bodies.append(info)
+    info = []
+    for off in range(span):
+        keys = ['lon', 'lat', 'dist', 'lons', 'lats', 'dists']
+        bodies = {}
+        jd_off = jd + off
+        for sweph_id in range(23):
+            values = swe.calc_ut(jd_off, sweph_id, flags)
+            body = dict(zip(keys, values))
+            body['sweph_id'] = sweph_id
+            bodies[sweph_id] = body
+        info.append({
+            'jd' : jd_off,
+            'bodies'  : bodies,
+        })
 
     swe.close()
 
-    return {
-            'jd' : jd,
-            'bodies'  : bodies,
-        }
+    return info
 
 def main():
     form = cgi.FieldStorage()
@@ -62,7 +66,7 @@ def main():
     # callback:
     callback = form.getfirst('callback')
     # work:
-    data = json.dumps([getinfo(jd + i) for i in range(span)])
+    data = json.dumps(getinfo(jd, span))
     js = callback and '%s(%s);' % (callback, data) or data
     content_type = callback and 'application/javascript' or 'application/json'
     # output:
