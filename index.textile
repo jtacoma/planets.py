@@ -3,11 +3,9 @@ layout: default
 title: planets.py
 ---
 
-h1. planets.py
-
 This page is a demonstration of how to use the <a href="https://github.com/jtacoma/planets.py">planets.py</a> service from a web page.  For example, here is where some planets are right now, according to a heliocentric, or Sun-centred, ephemeris:
 
-bq. <div id="now" />
+<blockquote><p id="now" /></blockquote>
 <script src="/planets.py/planets.js"></script>
 <script type="text/javascript">
   planets.url = "http://ephemeris.yellowseed.org/0.1/";
